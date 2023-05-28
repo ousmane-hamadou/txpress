@@ -1,0 +1,7 @@
+[workspace]
+members = ["server", "domain", "data-providers", "database-derive"]
+
+[profile.release-lto]
+inherits = "release"
+lto = true
+opt-level="z"

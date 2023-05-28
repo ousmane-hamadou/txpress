@@ -1,0 +1,1 @@
+alter table trips add column available_seats integer not null default 0

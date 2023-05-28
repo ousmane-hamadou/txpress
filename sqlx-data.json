@@ -1,0 +1,289 @@
+{
+  "db": "PostgreSQL",
+  "0e22c09b418a3312f6a1f6258258b42f8bf6f5968ff8451c4e86a4f312b0aac4": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Text",
+          "Varchar",
+          "Text"
+        ]
+      }
+    },
+    "query": "INSERT INTO taxi_owners (id, full_name, password) VALUES (lower($1), $2, $3)"
+  },
+  "1364e0c07ae144b96cf32bc3c8b7f6f0820c19ee711a0a557c8dbe19bf817f7b": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "UuidArray",
+          "TextArray"
+        ]
+      }
+    },
+    "query": "INSERT INTO taxi_ranks (id, name) SELECT * FROM UNNEST($1::uuid[], $2::text[])"
+  },
+  "53d4d584fe51a407e68b0825192b3c6ffca8cb6cb974a355d7ee3318b1234708": {
+    "describe": {
+      "columns": [
+        {
+          "name": "journey_id",
+          "ordinal": 0,
+          "type_info": "Uuid"
+        },
+        {
+          "name": "number",
+          "ordinal": 1,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "brand",
+          "ordinal": 2,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "number_of_seats",
+          "ordinal": 3,
+          "type_info": "Int4"
+        },
+        {
+          "name": "departure_schedule",
+          "ordinal": 4,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "available_seats",
+          "ordinal": 5,
+          "type_info": "Int4"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Uuid"
+        ]
+      }
+    },
+    "query": "SELECT tp.id as journey_id, t.number, t.brand, t.number_of_seats, tp.departure_schedule, tp.available_seats\n                FROM trips tp\n                    INNER JOIN taxis t ON t.number = tp.owner\n                        WHERE tp.id = $1"
+  },
+  "850ad398b57e69b5494836f0826f6ba270e338c3334503d8cd3447f0027eeeeb": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Text",
+          "Varchar",
+          "Int4"
+        ]
+      }
+    },
+    "query": "INSERT INTO taxis (number, brand, number_of_seats) VALUES (lower($1), $2, $3)"
+  },
+  "abd17d9da77e12b62eeb4bc97d780b88fea1fb576fdd49b2b65130a20b134bf3": {
+    "describe": {
+      "columns": [],
+      "nullable": [],
+      "parameters": {
+        "Left": [
+          "Uuid",
+          "Text",
+          "Uuid",
+          "Uuid",
+          "Timestamptz"
+        ]
+      }
+    },
+    "query": "INSERT INTO trips(id, owner, origin, destination, departure_schedule)\n                VALUES ($1, lower($2), $3, $4, $5)"
+  },
+  "af5a022286a0ed431c713f573de90bbfd366979b81c814965c6a0db6d344a137": {
+    "describe": {
+      "columns": [
+        {
+          "name": "number",
+          "ordinal": 0,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "brand",
+          "ordinal": 1,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "number_of_seats",
+          "ordinal": 2,
+          "type_info": "Int4"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      }
+    },
+    "query": "SELECT number, brand, number_of_seats FROM taxis WHERE number = lower($1)"
+  },
+  "cccc3e85d9078ed932a46ce8ef46acb80c234e43c1d3879dfca21351e3d42aae": {
+    "describe": {
+      "columns": [
+        {
+          "name": "departure_schedule",
+          "ordinal": 0,
+          "type_info": "Timestamptz"
+        }
+      ],
+      "nullable": [
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Uuid"
+        ]
+      }
+    },
+    "query": "SELECT departure_schedule from trips WHERE id = $1"
+  },
+  "cecc116fa0ce3a7153572b79dc0e709a04c31b319b98bfe8baf1de6591e6a8bd": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Uuid"
+        },
+        {
+          "name": "name",
+          "ordinal": 1,
+          "type_info": "Varchar"
+        }
+      ],
+      "nullable": [
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Uuid"
+        ]
+      }
+    },
+    "query": "SELECT id, name FROM taxi_ranks WHERE id = $1"
+  },
+  "e7ef97076d4e3cd9b47d9ae8cd7dc76d1ab5519d75f272c1e720cd6bcf782119": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Uuid"
+        },
+        {
+          "name": "name",
+          "ordinal": 1,
+          "type_info": "Varchar"
+        }
+      ],
+      "nullable": [
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": []
+      }
+    },
+    "query": "SELECT id, name FROM taxi_ranks"
+  },
+  "ead36f26dd982ac54d9d4fc5493ddaee4c3858a64b3d2cad3efec6a122b5d994": {
+    "describe": {
+      "columns": [
+        {
+          "name": "full_name",
+          "ordinal": 0,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "password",
+          "ordinal": 1,
+          "type_info": "Text"
+        }
+      ],
+      "nullable": [
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      }
+    },
+    "query": "SELECT full_name, password FROM taxi_owners WHERE id = lower($1)"
+  },
+  "f33b4aa430b9951b3bb3091ccf2bd98fd930b1abbf671e56d744a330774c27a3": {
+    "describe": {
+      "columns": [
+        {
+          "name": "journey_id",
+          "ordinal": 0,
+          "type_info": "Uuid"
+        },
+        {
+          "name": "number",
+          "ordinal": 1,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "brand",
+          "ordinal": 2,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "number_of_seats",
+          "ordinal": 3,
+          "type_info": "Int4"
+        },
+        {
+          "name": "departure_schedule",
+          "ordinal": 4,
+          "type_info": "Timestamptz"
+        },
+        {
+          "name": "available_seats",
+          "ordinal": 5,
+          "type_info": "Int4"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Uuid",
+          "Uuid"
+        ]
+      }
+    },
+    "query": "SELECT tp.id as journey_id, t.number, t.brand, t.number_of_seats, tp.departure_schedule, tp.available_seats\n                FROM trips tp\n                    INNER JOIN taxis t ON t.number = tp.owner\n                        WHERE tp.origin = $1 AND tp.destination = $2 AND tp.finished = false"
+  }
+}

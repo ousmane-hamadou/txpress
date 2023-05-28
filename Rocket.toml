@@ -1,0 +1,5 @@
+[default]
+secret_key="IDk09eaCqyF3KxuzT7vMcY9/GUA3ifgVVneLQpz/9I8="
+
+[default.databases.txpress]
+url="postgres://postgres:postgres@localhost/txpress"
