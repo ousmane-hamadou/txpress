@@ -1,5 +1,5 @@
 [workspace]
-members = ["server", "domain", "data-providers", "database-derive"]
+members = ["server", "domain", "database", "database-derive", "taxis"]
 
 [profile.release-lto]
 inherits = "release"

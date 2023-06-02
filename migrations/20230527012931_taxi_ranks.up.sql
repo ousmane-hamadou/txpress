@@ -1,1 +1,0 @@
-alter table stations rename to taxi_ranks;

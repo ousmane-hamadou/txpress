@@ -1,0 +1,57 @@
+[package]
+name = "taxis"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies.database]
+version = "0.1.0"
+path = "../database"
+
+[dependencies.database-derive]
+version = "0.1.0"
+path = "../database-derive"
+
+[dependencies.rocket]
+version = "0.5.0-rc.3"
+features = ["secrets", "json", "uuid"]
+
+[dependencies.rocket_db_pools]
+version = "0.1.0-rc.3"
+features = ["sqlx_postgres"]
+
+[dependencies.async-trait]
+version = "0.1"
+
+[dependencies.sqlx]
+version = "0.6"
+features = ["migrate", "uuid", "chrono", "offline"]
+
+[dependencies.uuid]
+version = "1.3"
+features = ["v4", "fast-rng"]
+
+[dependencies.log]
+version = "0.4"
+
+[dependencies.chrono]
+version = "0.4"
+features = ["serde", "clock"]
+
+[dependencies.thiserror]
+version = "1.0"
+
+[dependencies.bcrypt]
+version = "0.14"
+
+[dependencies.serde]
+version = "1.0"
+features = ["derive"]
+
+[dependencies.serde_json]
+version = "1.0"
+
+[dependencies.validator]
+version = "0.16"
+features = ["derive"]

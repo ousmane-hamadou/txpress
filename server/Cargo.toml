@@ -4,48 +4,22 @@ version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies.data-providers]
+[dependencies.database]
 version = "0.1.0"
-path = "../data-providers"
+path = "../database"
 
-[dependencies.domain]
+[dependencies.taxis]
 version = "0.1.0"
-path = "../domain"
+path = "../taxis"
 
 [dependencies.rocket]
 version = "0.5.0-rc.3"
-features = ["json", "secrets", "uuid"]
-
-[dependencies.thiserror]
-version = "1.0"
-
-[dependencies.bcrypt]
-version = "0.14"
-
-[dependencies.serde_with]
-version = "3.0"
-
-[dependencies.validator]
-version = "0.16"
-features = ["derive"]
-
-[dependencies.serde]
-version = "1.0"
-features = ["derive"]
-
-[dependencies.serde_json]
-version = "1.0"
 
 [dependencies.dotenvy]
 version = "0.15"
 
-[dependencies.qrcodegen]
-version = "1.8.0"
+#[dependencies.qrcodegen]
+#version = "1.8.0"
 
 [dependencies.log]
 version = "0.4"
-
-[dependencies.chrono]
-version = "0.4"
-features = ["serde", "clock"]

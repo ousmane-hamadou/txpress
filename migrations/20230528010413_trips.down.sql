@@ -1,1 +1,0 @@
-alter table trips drop column available_seats;
